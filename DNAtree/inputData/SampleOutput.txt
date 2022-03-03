@@ -1,0 +1,124 @@
+sequence ACGT inserted at level 0
+sequence AAAA inserted at level 2
+sequence AA inserted at level 3
+sequence AAACCCCGGTGAAAACGTA inserted at level 4
+sequence ACTGGGAA inserted at level 3
+sequence ACGT removed
+sequence ACCTT inserted at level 3
+sequence ACTTA inserted at level 4
+tree dump:
+I
+  I
+    I
+      I
+        AAAA
+        AAACCCCGGTGAAAACGTA
+        E
+        E
+        E
+      E
+      E
+      E
+      AA
+    I
+      E
+      ACCTT
+      E
+      I
+        E
+        E
+        ACTGGGAA
+        ACTTA
+        E
+      E
+    E
+    E
+    E
+  E
+  E
+  E
+  E
+sequence TATA inserted at level 1
+sequence TCG inserted at level 2
+tree dump:
+I
+  I
+    I
+      I
+        AAAA 4
+        AAACCCCGGTGAAAACGTA 19
+        E
+        E
+        E
+      E
+      E
+      E
+      AA 2
+    I
+      E
+      ACCTT 5
+      E
+      I
+        E
+        E
+        ACTGGGAA 8
+        ACTTA 5
+        E
+      E
+    E
+    E
+    E
+  E
+  E
+  I
+    TATA 4
+    TCG 3
+    E
+    E
+    E
+  E
+tree dump:
+I
+  I
+    I
+      I
+        AAAA A:100.00 C:0.00 G:0.00 T:0.00
+        AAACCCCGGTGAAAACGTA A:42.11 C:26.32 G:21.05 T:10.53
+        E
+        E
+        E
+      E
+      E
+      E
+      AA A:100.00 C:0.00 G:0.00 T:0.00
+    I
+      E
+      ACCTT A:20.00 C:40.00 G:0.00 T:40.00
+      E
+      I
+        E
+        E
+        ACTGGGAA A:37.50 C:12.50 G:37.50 T:12.50
+        ACTTA A:40.00 C:20.00 G:0.00 T:40.00
+        E
+      E
+    E
+    E
+    E
+  E
+  E
+  I
+    TATA A:50.00 C:0.00 G:0.00 T:50.00
+    TCG A:0.00 C:33.33 G:33.33 T:33.33
+    E
+    E
+    E
+  E
+# of nodes visited: 5
+sequence: AAAA
+# of nodes visited: 13
+sequence: AAAA
+sequence: AAACCCCGGTGAAAACGTA
+sequence: AA
+# of nodes visited: 4
+no sequence found
