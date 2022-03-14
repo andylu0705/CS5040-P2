@@ -1,15 +1,31 @@
 
 public class Tree {
-    
+    /**
+     * FlyweightNode represents all empty nodes in the tree.
+     * Instead of having multiple instances of empty leaf nodes,
+     * we will only use one to save space.
+     */
     private Node root;
     private FlyweightNode fw;
     private char[] chars = {'A', 'C', 'G', 'T', 'E'};
     private int visitedCount;
+    /**
+     * Basic constructor for the DNATree class.  Creates a new
+     * FlyweightNode by default and make Node type root
+     * reference to fw (since the tree is empty).
+     */
     public Tree() {
         fw = new FlyweightNode();
         root = fw;        
     }
-    
+    /**
+     * Inserts a sequence into the tree.
+     * The method will try to find the closest node for the sequence to live at
+     * without ambiguity, moving around the other nodes as needed.
+     *
+     * @param sequence - the new DNA sequence to insert
+     * @return the level of the new node, or -1 if unsuccessful
+     */
     public int insert(String sequence) {
         
         if (root instanceof FlyweightNode) {
@@ -30,7 +46,15 @@ public class Tree {
         }
         return insert(sequence, (InternalNode) root);
     }
-    
+    /**
+     * Helper method for insert(). Will check the
+     * next child in the sequence and determine
+     * what to do with the new sequence.
+     *
+     * @param sequence - the new DNA sequence to insert
+     * @param node - the internal node parent in question
+     * @return the level of the new node, -1 if unsuccessful
+     */
     private int insert(String sequence, InternalNode node) {
         
         char pos;
@@ -61,7 +85,16 @@ public class Tree {
         return insert(sequence,(InternalNode) cur);
         
     }
-    
+    /**
+     * Removes the given sequence from the tree
+     * Returns true if the sequence was found and
+     * removed, false otherwise.
+     * Method will rebuild the area around
+     * the removed Leaf Node if needed.
+     *
+     * @param sequence - the DNA sequence to be removed
+     * @return if the removal was successful
+     */
     public boolean remove(String sequence) {
         if (root instanceof FlyweightNode) {
             return false;
@@ -76,7 +109,16 @@ public class Tree {
         }
         return remove(sequence,(InternalNode)root);
     }
-    
+    /**
+     * Recursive helper method to find and remove a
+     * given sequence from the tree.  First, determines
+     * the location of the nearest parent node, then
+     * removes the sequence if found.
+     *
+     * @param sequence - the sequence to be removed
+     * @param node - the internal node in question
+     * @return whether or not the remove was successful
+     */
     public boolean remove(String sequence, InternalNode node) {
         
         char c = 'E';
@@ -109,13 +151,31 @@ public class Tree {
         }
         return true;
     }
+    /**
+     * Method to print out various things about a tree.  Will always
+     * give the basic structure via indentation and I/E/sequences.
+     * Flags are for extra options, such as sequence lengths or
+     * letter statistics.
+     *
+     * @param lengths - printed sequence lengths
+     * @param stats - printed sequence statistics
+     * @return the print for the entire tree
+     */
     public String print(boolean lengths, boolean stats) {
         if (root instanceof FlyweightNode) {
             return "E";
         }
         return print(lengths,stats,root,null);
     }
-    
+    /**
+     * Helper for print method.  Recursively
+     * preorder-traverse all the nodes to print them.
+     *
+     * @param lengths - printed sequence lengths
+     * @param stats - printed sequence statistics
+     * @param cur - the current node to print
+     * @return the print for this node and any children
+     */
     public String print(boolean lengths, boolean stats, Node cur, Node parent) {
         String result = "\n";
         
@@ -176,7 +236,14 @@ public class Tree {
         
         return result;
     }
-    
+    /**
+     * 2 types of patterns: (1) prefix search (2) exact matching
+     * Prefix matching returns all sequences with a given prefix
+     * Exact matching will print the exact sequence if found
+     *
+     * @param searchWord - the keyword to look for
+     * @return the number of nodes visited and search results
+     */
     public String search(String searchWord) {
         
         if (root instanceof FlyweightNode) {
@@ -253,7 +320,12 @@ public class Tree {
         }
         return "# of nodes visited: " + visitedCount + result + "\n";
     }
-    
+    /**
+     * Helper method to print all the nodes in a tree.
+     *
+     * @param node - the root of the tree
+     * @return an output string for all the sequences
+     */
     private String printAll(InternalNode node) {
         visitedCount++;
         String result = "";
